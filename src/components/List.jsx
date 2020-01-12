@@ -1,12 +1,15 @@
 import React from 'react'
+import Typography from '@material-ui/core/Typography';
 
 import CardComponent from "./Card";
 
-const List = ({ title }) => (
+const List = ({ title, cards }) => (
     <React.Fragment>
         <div style={style.container}>
-            <h4>{title}</h4>
-            <CardComponent />
+            <Typography variant="h6" align="center" > { title } </Typography >
+            {
+                cards.map(card => <CardComponent  text={card.text}/>)
+            }
         </div>
     </React.Fragment>
 );
@@ -17,7 +20,7 @@ const style = {
         backgroundColor: '#a0beee',
         borderRadius: 3,
         width: 300,
-
+        marginRight: 8
     }
 }
 
