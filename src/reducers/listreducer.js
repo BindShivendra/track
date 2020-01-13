@@ -1,6 +1,7 @@
 const initialState = [
     {
         title: 'First card title',
+        id: 0,
         cards: [
             {
                 id: 0,
@@ -14,6 +15,7 @@ const initialState = [
     },
     {
         title: 'Second card title',
+        id: 1,
         cards: [
             {
                 id: 0,
@@ -21,7 +23,19 @@ const initialState = [
             },
             {
                 id: 1,
-                text: "display list item"
+                text: "display list item 2"
+            },
+            {
+                id: 2,
+                text: "display list item 3"
+            },
+            {
+                id: 3,
+                text: "display list item 4"
+            },
+            {
+                id: 4,
+                text: "display list item 5"
             },
         ]
     }
