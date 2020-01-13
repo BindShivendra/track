@@ -13,7 +13,7 @@ class App extends Component {
         <h1>Hello</h1>
         <div style={styles.listContainer} >
           {
-            lists.map(list => <List key={list.id} title={list.title} cards={list.cards} />)
+            lists.map(list => <List key={list.id} listId={list.id} title={list.title} cards={list.cards} />)
           }
           <AddItemButton list />
         </div>

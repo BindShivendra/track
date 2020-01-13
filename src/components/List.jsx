@@ -4,14 +4,14 @@ import Typography from '@material-ui/core/Typography';
 import CardComponent from "./Card";
 import AddItem from './Additem';
 
-const List = ({ title, cards }) => (
+const List = ({ title, cards, listId }) => (
     <React.Fragment>
         <div style={style.container}>
             <Typography variant="h6" align="center" > { title } </Typography >
             {
-                cards.map(card => <CardComponent key={card.id} text={card.text}/>)
+                cards.map(card => <CardComponent key={card.id}  text={card.text}/>)
             }
-            <AddItem />
+            <AddItem listId={listId}/>
         </div>
     </React.Fragment>
 );

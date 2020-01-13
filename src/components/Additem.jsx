@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Icon } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
-
 import { TextareaAutosize } from '@material-ui/core';
+
+import { addList, addCard } from '../actions/list.actions';
 
 class AddItemButton extends Component{
     
@@ -27,6 +29,26 @@ class AddItemButton extends Component{
         this.setState({
             text: e.target.value
         })
+    }
+
+    handleAddList = () =>{
+        const { dispatch } = this.props;
+        const { text } = this.state;
+        if(text){
+            this.setState({text: ""})
+            dispatch(addList(text))  // dispatch action call to add list item
+        }
+        return;
+    }
+    
+    handleAddCard = () =>{
+        const { dispatch, listId } = this.props;
+        const { text } = this.state;
+        if(text){
+            this.setState({text: ""})
+            dispatch(addCard(listId, text))  // dispatch action call to add list item
+        }
+        return;
     }
 
     prepareAddButton = () =>{
@@ -70,8 +92,10 @@ class AddItemButton extends Component{
                 />
             </Card>
             <div style={styles.buttonGroup}>
-                <Button variant="contained" 
+                <Button 
+                    variant="contained" 
                     style={{color: 'white', backgroundColor: '#2d6f12'}}
+                    onMouseDown={list? this.handleAddList: this.handleAddCard}
                 > { btnTitle }</Button>
             <Icon style={{marginRight: 10, cursor: 'pointer'}}>close</Icon>
             </div>
@@ -114,4 +138,7 @@ const styles = {
     }
 }
 
-export default AddItemButton;
+export default connect() (AddItemButton);
+// connect() (AddItemButton) this will provide access to dispatch() in props
+
+// mousedown runs before on blure
