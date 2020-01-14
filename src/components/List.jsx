@@ -1,19 +1,32 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography';
+import { Droppable } from 'react-beautiful-dnd';
 
 import CardComponent from "./Card";
 import AddItem from './Additem';
 
 const List = ({ title, cards, listId }) => (
-    <React.Fragment>
-        <div style={style.container}>
-            <Typography variant="h6" align="center" > { title } </Typography >
-            {
-                cards.map(card => <CardComponent key={card.id}  text={card.text}/>)
-            }
-            <AddItem listId={listId}/>
-        </div>
-    </React.Fragment>
+    <Droppable droppableId={listId}>
+        { provided =>(
+            <div 
+                ref={provided.innerRef} 
+                {...provided.droppableProps}
+                style={style.container}>
+                <Typography variant="h6" align="center" > { title } </Typography >
+                {
+                    cards.map((card, index) => (
+                    <CardComponent 
+                        key={card.id} 
+                        index={index} 
+                        cardId={card.id} 
+                        text={card.text}/>
+                        ))
+                }
+                <AddItem listId={listId}/>
+                {provided.placeholder}
+            </div>
+        )}
+    </Droppable>
 );
 
 
