@@ -20,7 +20,7 @@ export const sortItems = (
     dropIdEnd,
     dropIndexStart,
     dropIndexEnd,
-    dragId) =>({
+     type) =>({
 
         type: SORT_ITEMS,
         payload: {
@@ -28,5 +28,6 @@ export const sortItems = (
             dropIdEnd: dropIdEnd,
             dropIndexStart: dropIndexStart,
             dropIndexEnd: dropIndexEnd,
+            type: type
         }
 })

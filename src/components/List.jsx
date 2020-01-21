@@ -1,43 +1,52 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography';
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
+import styles from 'styled-components';
 
 import CardComponent from "./Card";
-import AddItem from './Additem';
+import AddItemButton from './Additem';
 
-const List = ({ title, cards, listId }) => (
-    <Droppable droppableId={listId}>
-        { provided =>(
-            <div 
-                ref={provided.innerRef} 
-                {...provided.droppableProps}
-                style={style.container}>
-                <Typography variant="h6" align="center" > { title } </Typography >
-                {
-                    cards.map((card, index) => (
-                    <CardComponent 
-                        key={card.id} 
-                        index={index} 
-                        cardId={card.id} 
-                        text={card.text}/>
-                        ))
-                }
-                <AddItem listId={listId}/>
-                {provided.placeholder}
+
+const Container = styles.div`
+  background-color: #a5c0d5;
+  border-radius: 3px;
+  width: 300px;
+  padding: 8px;
+  height: 100%;
+  margin: 0 8px 0 0;
+`;
+
+const List = ({ title, cards, listId, index }) => (
+  <Draggable draggableId={listId} index={index} >
+    {provided =>(
+      <Container 
+          ref={provided.innerRef} 
+          {...provided.draggableProps} 
+          {...provided.dragHandleProps} >
+        <Droppable droppableId={listId}>
+          {provided => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              >
+              <h4> {title}</h4>
+              {
+                cards.map((card, index) => (
+                  <CardComponent
+                    key={card.id}
+                    index={index}
+                    cardId={card.id}
+                    text={card.text} />
+                ))
+              }
+              {provided.placeholder}
             </div>
-        )}
-    </Droppable>
+          )}
+        </Droppable>
+        <AddItemButton listId={listId} />
+      </Container>
+    )}
+  </Draggable>
 );
-
-
-const style = {
-    container: {
-        backgroundColor: '#a0beee',
-        borderRadius: 3,
-        width: 300,
-        marginRight: 8,
-        height: '100%'
-    }
-}
 
 export default List;
