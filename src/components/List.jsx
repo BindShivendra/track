@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import styles from 'styled-components';
 

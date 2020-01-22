@@ -4,7 +4,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import styles from 'styled-components';
-import { withTheme } from '@material-ui/styles';
 
 const Container = styles.div`
     margin-bottom: 8px;  

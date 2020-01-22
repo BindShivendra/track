@@ -12,7 +12,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   font-family: 'Roboto', sans-serif;
-  background-color: #cfe3e8;
 `
 
 class App extends Component {

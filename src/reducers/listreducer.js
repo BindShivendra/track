@@ -6,7 +6,7 @@ import {
 
 
 let lastID = 2; // hack
-let cardID = 6;
+let cardID = 7;
 const initialState = [{
         title: 'First card title',
         id: `list-${0}`,
@@ -53,13 +53,13 @@ const listReducer = (state = initialState, action) => {
             const newList = {
                 title: action.payload.title,
                 cards: [],
-                id: lastID
+                id: `list-${lastID}`
             }
             lastID += 1;
             return [...state, newList];
         case ADD_CARD: {
             const newCard = {
-                id: cardID,
+                id: `card-${cardID}`,
                 text: action.payload.text
             };
             cardID += 1;
@@ -73,7 +73,6 @@ const listReducer = (state = initialState, action) => {
                     return list
                 }
             })
-
             return newState;
         }
         case SORT_ITEMS: {
@@ -103,7 +102,7 @@ const listReducer = (state = initialState, action) => {
                 const toList = state.find(list => dropIdEnd === list.id);
                 toList.cards.splice(dropIndexEnd, 0, ...card);
             }
-
+            
             return newState;
         }
         default:
